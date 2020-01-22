@@ -3,13 +3,17 @@ pub mod graph {
     use std::collections::HashMap;
     
     pub struct Graph {
-        nodes: HashMap<i32, GraphNode>
+        nodes: HashMap<u32, GraphNode>
     }
 
-    pub struct GraphNode {
-        id: i32,
-        adjacents: Vec<i32>
+    impl Graph {
+      fn add_node(&mut self) -> u32 {
+        (*self).nodes.keys().fold(0, move |curr, potential| std::cmp::max(curr, *potential))
+      }
     }
 
-    
+    struct GraphNode {
+        id: u32,
+        adjacents: Vec<u32>
+    }
 }
